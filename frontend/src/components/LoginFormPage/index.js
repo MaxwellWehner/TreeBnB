@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import { login } from "../../store/session";
+import "./LoginForm.css";
 
 const LoginFormPage = () => {
   const [credential, setCredential] = useState("");
@@ -39,7 +40,7 @@ const LoginFormPage = () => {
     <form onSubmit={handelSubmit}>
       {errors.length > 0 && (
         <ul>
-          Please fix the following errors
+          Please fix the following errors:
           {errors.map((error) => (
             <li key={error}>{error}</li>
           ))}
