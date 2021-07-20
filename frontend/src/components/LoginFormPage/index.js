@@ -32,6 +32,23 @@ const LoginFormPage = () => {
     }
   };
 
+  const handleDemo = async () => {
+    setErrors([]);
+    const user = {
+      credential: "Demo-lition",
+      password: "password",
+    };
+
+    try {
+      await dispatch(login(user));
+    } catch (res) {
+      const data = await res.json();
+      if (data && data.errors) {
+        setErrors(data.errors);
+      }
+    }
+  };
+
   if (user) {
     return <Redirect to="/" />;
   }
@@ -67,6 +84,7 @@ const LoginFormPage = () => {
           Log In
         </button>
       </form>
+      <button onClick={handleDemo}>Demo User</button>
     </div>
   );
 };
