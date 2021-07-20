@@ -30,15 +30,24 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button onClick={openMenu} className="nav__button profile__button">
         <i className="fas fa-user-circle" />
+        {user.username}
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <span>Username: </span>
+            {user.username}
+          </li>
+          <li>
+            <span>Email: </span>
+            {user.email}
+          </li>
+          <li>
+            <button onClick={logout} className="nav__button logout__button">
+              Log Out
+            </button>
           </li>
         </ul>
       )}

@@ -31,13 +31,16 @@ input {
 
 .submit {
   height: 40px;
-  background-color: #acffad;
+  background-color: #85ff87;
   border-radius: 7px;
   border: 1px solid;
   font-family: "Rubik", sans-serif;
   font-size: 16px;
   font-weight: 500;
   margin-top: 20px;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .submit:hover {
@@ -61,4 +64,9 @@ input:focus {
 
 .errors > li {
   padding-top: 10px;
+}
+
+.demo {
+  background-color: #ff7f7f;
+  margin-left: 10%;
 }

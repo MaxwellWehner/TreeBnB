@@ -84,7 +84,9 @@ const LoginFormPage = () => {
           Log In
         </button>
       </form>
-      <button onClick={handleDemo}>Demo User</button>
+      <button onClick={handleDemo} className="submit demo">
+        Demo User
+      </button>
     </div>
   );
 };
