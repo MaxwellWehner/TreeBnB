@@ -1,3 +1,5 @@
-label {
-  color: blue;
+.signup__form {
+  display: flex;
+  flex-direction: column;
+  font-family: "Rubik", sans-serif;
 }

@@ -12,21 +12,23 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/login" className="login__button nav__button">
+          Log In
+        </NavLink>
+        <NavLink to="/signup" className="signup__button nav__button">
+          Sign Up
+        </NavLink>
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <div className="nav__container">
+      <NavLink exact to="/" className="home__button nav__button">
+        TreeBnB
+      </NavLink>
+      {isLoaded && sessionLinks}
+    </div>
   );
 }
 

@@ -37,17 +37,17 @@ const LoginFormPage = () => {
   }
 
   return (
-    <form onSubmit={handelSubmit}>
-      {errors.length > 0 && (
-        <ul>
-          Please fix the following errors:
-          {errors.map((error) => (
-            <li key={error}>{error}</li>
-          ))}
-        </ul>
-      )}
-      <label htmlFor="credential ">
-        Username or Email:
+    <div className="form__container">
+      <form onSubmit={handelSubmit} className="login__form">
+        {errors.length > 0 && (
+          <ul className="errors">
+            Please fix the following errors:
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        )}
+        <label htmlFor="credential ">Username or Email:</label>
         <input
           id="credential"
           type="text"
@@ -55,9 +55,7 @@ const LoginFormPage = () => {
           onChange={(e) => setCredential(e.target.value)}
           required
         ></input>
-      </label>
-      <label htmlFor="password">
-        Password:
+        <label htmlFor="password">Password:</label>
         <input
           id="password"
           type="password"
@@ -65,9 +63,11 @@ const LoginFormPage = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         ></input>
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+        <button type="submit" className="submit">
+          Log In
+        </button>
+      </form>
+    </div>
   );
 };
 

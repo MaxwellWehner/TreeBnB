@@ -1,1 +1,53 @@
 /* TODO Add site wide styles */
+@import url("https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap");
+
+body {
+  margin: 0 auto;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #acffad;
+  height: 100vh;
+}
+
+a {
+  color: #00b7ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+ol,
+li,
+ul,
+div,
+span,
+body,
+header,
+nav {
+  font-size: 1rem;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.root {
+  height: 100%;
+  background-color: #acffad;
+  display: flex;
+  justify-content: center;
+}

@@ -1,3 +1,36 @@
-ul {
-  background-color: pink;
+li {
+  list-style-type: none;
+}
+
+.nav__button {
+  border: 1px solid;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 10px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+}
+
+.nav__button:hover {
+  background-color: #71efa3;
+}
+
+.nav__container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 60px;
+  background-color: #50cb93;
+}
+
+.home__button {
+  margin-right: auto;
+  margin-left: 10px;
+  font-family: "Otomanopee One", sans-serif;
+}
+
+.login__button,
+.signup__button {
+  font-weight: 600;
 }

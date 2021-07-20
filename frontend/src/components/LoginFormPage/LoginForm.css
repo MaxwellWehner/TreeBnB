@@ -1,3 +1,64 @@
-form {
-  background-color: red;
+.login__form {
+  display: flex;
+  flex-direction: column;
+  font-family: "Rubik", sans-serif;
+}
+
+.form__container {
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid;
+  border-radius: 7px;
+  padding: 20px 30px;
+  margin-top: 80px;
+  background-color: #71efa3;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+input {
+  margin-bottom: 10px;
+  height: 40px;
+  font-size: 16px;
+  background-color: #acffad;
+  border-radius: 7px;
+  border: 1px solid;
+}
+
+.submit {
+  height: 40px;
+  background-color: #acffad;
+  border-radius: 7px;
+  border: 1px solid;
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.submit:hover {
+  border: 2px solid;
+}
+
+input:focus {
+  border: 2px solid;
+  outline: none;
+}
+
+.errors {
+  align-self: center;
+  border: 1px solid;
+  padding: 20px;
+  background-color: #ff7f7f;
+  font-family: "Rubik", sans-serif;
+  font-weight: 600;
+  border-radius: 7px;
+}
+
+.errors > li {
+  padding-top: 10px;
 }
