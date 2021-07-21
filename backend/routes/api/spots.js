@@ -67,4 +67,35 @@ router.get(
   })
 );
 
+router.delete(
+  "/:id(\\d+)",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const spot = await Spot.findByPk(id);
+    await spot.destroy();
+  })
+);
+
+router.put(
+  "/id(\\d+)",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { address, city, state, country, price, name } = req.body;
+    const spot = await Spot.findByPk(id);
+
+    const newSpot = await spot.update({
+      address,
+      city,
+      state,
+      country,
+      price,
+      name,
+    });
+
+    res.json(newSpot);
+  })
+);
+
 module.exports = router;
