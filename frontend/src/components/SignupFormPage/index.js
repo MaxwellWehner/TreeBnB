@@ -34,7 +34,7 @@ function SignupFormPage() {
   return (
     <div className="form__container">
       <form onSubmit={handleSubmit} className="signup__form">
-        {errors.lenght > 0 && (
+        {errors.length > 0 && (
           <ul className="errors">
             Please fix the following errors:
             {errors.map((error, idx) => (
