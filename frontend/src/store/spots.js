@@ -1,13 +1,13 @@
 import { csrfFetch } from "./csrf";
 
-const ADD_SPOT = "spots/ADD_SPOT";
+const ADD_ONE = "spots/ADD_ONE";
 const DELETE_SPOT = "spots/DELETE_SPOT";
 const LOAD = "spots/LOAD";
 
 //action creators
-const addSpot = (spot) => {
+const addOneSpot = (spot) => {
   return {
-    type: ADD_SPOT,
+    type: ADD_ONE,
     spot,
   };
 };
@@ -28,16 +28,24 @@ const load = (list) => {
 //thunks
 export const getSpots = () => async (dispatch) => {
   const response = await csrfFetch(`/api/spots`);
-  const list = await response.json();
 
   if (response.ok) {
+    const list = await response.json();
     dispatch(load(list));
   }
-  return list;
+};
+
+export const getOneSpot = (id) => async (dispatch) => {
+  const res = await fetch(`/api/spots/${id}`);
+
+  if (res.ok) {
+    const spot = await res.json();
+    dispatch(addOneSpot(spot));
+  }
 };
 
 //reducer
-const initialState = {};
+const initialState = { list: [] };
 
 const sortList = (list) => {
   return list.sort((spot1, spot2) => {
@@ -58,25 +66,26 @@ const spotReducer = (state = initialState, action) => {
         list: sortList(action.list),
       };
     }
-    // case ADD_ONE: {
-    //   if (!state[action.pokemon.id]) {
-    //     const newState = {
-    //       ...state,
-    //       [action.pokemon.id]: action.pokemon,
-    //     };
-    //     const pokemonList = newState.list.map((id) => newState[id]);
-    //     pokemonList.push(action.pokemon);
-    //     newState.list = sortList(pokemonList);
-    //     return newState;
-    //   }
-    //   return {
-    //     ...state,
-    //     [action.pokemon.id]: {
-    //       ...state[action.pokemon.id],
-    //       ...action.pokemon,
-    //     },
-    //   };
-    // }
+    case ADD_ONE: {
+      if (!state[action.spot.id]) {
+        console.log("in reducer if");
+        const newState = {
+          ...state,
+          [action.spot.id]: action.spot,
+        };
+        const spotList = newState.list.map((id) => newState[id]);
+        spotList.push(action.spot);
+        newState.list = sortList(spotList);
+        return newState;
+      }
+      return {
+        ...state,
+        [action.spot.id]: {
+          ...state[action.spot.id],
+          ...action.spot,
+        },
+      };
+    }
     // case REMOVE_ITEM: {
     //   return {
     //     ...state,
