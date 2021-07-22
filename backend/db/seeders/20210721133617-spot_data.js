@@ -27,12 +27,23 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          userId: 2,
+          address: "24440 Bergerac City, Bergerac France",
+          city: "Bergerac City",
+          state: "Bergerac",
+          country: "France",
+          price: 150,
+          name: "Chateaux Dans les Arbres",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("People", null, {});
+    return queryInterface.bulkDelete("Spots", null, {});
   },
 };

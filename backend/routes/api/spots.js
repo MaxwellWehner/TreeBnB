@@ -17,22 +17,34 @@ const validateSpot = [
     .exists({ checkFalsy: true })
     .isLength({ min: 5 })
     .withMessage("Please provide a address with at least 5 characters."),
-  check("username").not().isEmail().withMessage("Username cannot be an email."),
-  check("password")
+  check("city")
     .exists({ checkFalsy: true })
-    .isLength({ min: 6 })
-    .withMessage("Password must be 6 characters or more."),
+    .isLength({ min: 5 })
+    .withMessage("Please provide a city with at least 5 characters."),
+  check("state")
+    .exists({ checkFalsy: true })
+    .isLength({ min: 5 })
+    .withMessage("Please provide a state with at least 5 characters."),
+  check("country")
+    .exists({ checkFalsy: true })
+    .isLength({ min: 5 })
+    .withMessage("Please provide a country with at least 5 characters."),
+  check("price")
+    .exists({ checkFalsy: true })
+    .isInt({ gt: 0 })
+    .withMessage("Please provide a price greater than 0"),
   handleValidationErrors,
 ];
 
 // make a new spot
 router.post(
   "/",
-  validateSpot,
   requireAuth,
+  validateSpot,
   asyncHandler(async (req, res) => {
     const { address, city, state, country, price, name } = req.body;
     const spot = await Spot.create({
+      userId: req.user.id,
       address,
       city,
       state,
@@ -41,9 +53,7 @@ router.post(
       name,
     });
 
-    return res.json({
-      spot,
-    });
+    return res.json(spot);
   })
 );
 
@@ -78,14 +88,16 @@ router.delete(
 );
 
 router.put(
-  "/id(\\d+)",
+  "/:id(\\d+)",
   requireAuth,
+  validateSpot,
   asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { address, city, state, country, price, name } = req.body;
     const spot = await Spot.findByPk(id);
 
     const newSpot = await spot.update({
+      userId: req.user.id,
       address,
       city,
       state,

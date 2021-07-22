@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import SingleSpot from "./components/Spots/SingleSpot";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import CreateForm from "./components/Spots/CreateForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route exact path="/spots">
             <Spots />
+          </Route>
+          <Route path="/spots/create">
+            <CreateForm />
           </Route>
           <Route path="/spots/:id">
             <SingleSpot />

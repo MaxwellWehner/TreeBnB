@@ -12,9 +12,10 @@ const addOneSpot = (spot) => {
   };
 };
 
-const deleteSpot = () => {
+const deleteSpot = (id) => {
   return {
     type: DELETE_SPOT,
+    id,
   };
 };
 
@@ -36,7 +37,7 @@ export const getSpots = () => async (dispatch) => {
 };
 
 export const getOneSpot = (id) => async (dispatch) => {
-  const res = await fetch(`/api/spots/${id}`);
+  const res = await csrfFetch(`/api/spots/${id}`);
 
   if (res.ok) {
     const spot = await res.json();
@@ -44,14 +45,48 @@ export const getOneSpot = (id) => async (dispatch) => {
   }
 };
 
-//reducer
-const initialState = { list: [] };
-
-const sortList = (list) => {
-  return list.sort((spot1, spot2) => {
-    return spot1.id - spot2.id;
+export const createSpotForm = (spot) => async (dispatch) => {
+  const res = await csrfFetch("/api/spots", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(spot),
   });
+
+  const newSpot = await res.json();
+
+  if (res.ok) dispatch(addOneSpot(newSpot));
+
+  return newSpot;
 };
+
+export const editSpotForm = (payload, id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${id}`, {
+    method: "put",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const updatedSpot = await res.json();
+
+  if (res.ok) {
+    dispatch(addOneSpot(updatedSpot));
+  }
+
+  return updatedSpot;
+};
+
+export const deleteSpotThunk = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${id}`, {
+    method: "delete",
+  });
+
+  //const data = await res.json();
+
+  dispatch(deleteSpot(id));
+};
+
+//reducer
+const initialState = {};
 
 const spotReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -63,19 +98,14 @@ const spotReducer = (state = initialState, action) => {
       return {
         ...allSpots,
         ...state,
-        list: sortList(action.list),
       };
     }
     case ADD_ONE: {
       if (!state[action.spot.id]) {
-        console.log("in reducer if");
         const newState = {
           ...state,
           [action.spot.id]: action.spot,
         };
-        const spotList = newState.list.map((id) => newState[id]);
-        spotList.push(action.spot);
-        newState.list = sortList(spotList);
         return newState;
       }
       return {
@@ -86,17 +116,12 @@ const spotReducer = (state = initialState, action) => {
         },
       };
     }
-    // case REMOVE_ITEM: {
-    //   return {
-    //     ...state,
-    //     [action.pokemonId]: {
-    //       ...state[action.pokemonId],
-    //       items: state[action.pokemonId].filter(
-    //         (item) => item.id !== action.itemId
-    //       ),
-    //     },
-    //   };
-    // }
+    case DELETE_SPOT: {
+      console.log("in delete_spot case");
+      const updatedState = { ...state };
+      delete updatedState[action.id];
+      return updatedState;
+    }
     default:
       return state;
   }

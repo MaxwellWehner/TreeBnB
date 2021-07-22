@@ -5,7 +5,9 @@ import { useHistory } from "react-router-dom";
 
 const Spots = () => {
   let spots = useSelector((state) => {
-    return state.spots.list;
+    const spotsObj = state.spots;
+    const values = Object.values(spotsObj);
+    return values;
   });
 
   const dispatch = useDispatch();
@@ -25,6 +27,7 @@ const Spots = () => {
 
   return (
     <div className="spots__container">
+      {console.log(spots)}
       {spots &&
         spots.map((spot) => {
           return (

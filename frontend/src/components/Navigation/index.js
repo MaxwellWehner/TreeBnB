@@ -30,6 +30,9 @@ function Navigation({ isLoaded }) {
       <NavLink to="/spots" className="spots__button nav__button">
         Spots
       </NavLink>
+      <NavLink to="/spots/create" className="host__button nav__button">
+        Host A Spot
+      </NavLink>
       {isLoaded && sessionLinks}
     </div>
   );
