@@ -80,8 +80,6 @@ export const deleteSpotThunk = (id) => async (dispatch) => {
     method: "delete",
   });
 
-  //const data = await res.json();
-
   dispatch(deleteSpot(id));
 };
 

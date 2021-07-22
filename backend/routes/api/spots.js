@@ -84,6 +84,8 @@ router.delete(
     const { id } = req.params;
     const spot = await Spot.findByPk(id);
     await spot.destroy();
+
+    res.json({});
   })
 );
 
