@@ -18,6 +18,27 @@ const SingleSpot = () => {
     dispatch(getOneSpot(id));
   }, [dispatch, id]);
 
+  const formShow = () => {
+    setIsFormShown((prevState) => !prevState);
+  };
+
+  // useEffect(() => {
+  //   if (isformShown) {
+  //     const form = document.getElementById("edit-spot-form");
+  //     const button = document.createElement("button");
+  //     button.type = "submit";
+  //     button.innerText = "Update Spot";
+  //     button.className = "submit";
+
+  //     button.addEventListener("click", formShow);
+  //     form.append(button);
+
+  //     return () => {
+  //       button.removeEventListener("click", formShow);
+  //     };
+  //   }
+  // }, [isformShown]);
+
   const handleEdit = () => {
     setIsFormShown((prevState) => !prevState);
   };
@@ -46,7 +67,7 @@ const SingleSpot = () => {
         <div>
           <button onClick={handleEdit}>Edit</button>{" "}
           <button onClick={handleDelete}>delete</button>
-          {isformShown && <EditForm />}
+          {isformShown && <EditForm formShow={formShow} />}
         </div>
       )}
     </div>

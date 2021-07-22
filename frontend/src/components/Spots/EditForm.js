@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { editSpotForm } from "../../store/spots";
 
-function EditForm() {
+function EditForm({ formShow }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
-  const [address, setAddress] = useState("");
-  const [name, setName] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [price, setPrice] = useState(0);
+  const defaultSpotVals = useSelector((state) => state.spots[id]);
+  const [address, setAddress] = useState(defaultSpotVals.address);
+  const [name, setName] = useState(defaultSpotVals.name);
+  const [city, setCity] = useState(defaultSpotVals.city);
+  const [country, setCountry] = useState(defaultSpotVals.country);
+  const [state, setState] = useState(defaultSpotVals.state);
+  const [price, setPrice] = useState(defaultSpotVals.price);
   const [errors, setErrors] = useState([]);
 
   if (!sessionUser) return <Redirect to="/login" />;
@@ -36,12 +37,16 @@ function EditForm() {
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
     });
-    history.push(`/spots/${id}`);
+    formShow();
   };
 
   return (
     <div className="form__container">
-      <form onSubmit={handleSubmit} className="signup__form">
+      <form
+        onSubmit={handleSubmit}
+        className="signup__form"
+        id="edit-spot-form"
+      >
         {errors.length > 0 && (
           <ul className="errors">
             Please fix the following errors:
@@ -93,7 +98,7 @@ function EditForm() {
           required
         />
         <button type="submit" className="submit">
-          Update Spot
+          Edit Spot
         </button>
       </form>
     </div>
