@@ -27,14 +27,13 @@ const Spots = () => {
 
   return (
     <div className="spots__container">
-      {console.log(spots)}
       {spots &&
         spots.map((spot) => {
           return (
             <div className="spot_container" key={spot.id}>
               <h2>{spot.name}</h2>
               <img
-                src=""
+                src={spot.Images[0].url}
                 alt="treehouse property"
                 onClick={() => handleSingleSpot(spot)}
               />

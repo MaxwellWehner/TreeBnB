@@ -23,6 +23,8 @@ li {
   align-items: center;
   height: 60px;
   background-color: #50cb93;
+  position: sticky;
+  top: 0;
 }
 
 .home__button {

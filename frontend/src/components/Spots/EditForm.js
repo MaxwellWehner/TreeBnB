@@ -33,11 +33,12 @@ function EditForm({ formShow }) {
       name,
     };
 
-    dispatch(editSpotForm(newSpot, id)).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
-    });
-    formShow();
+    dispatch(editSpotForm(newSpot, id))
+      .then(() => formShow())
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   };
 
   return (

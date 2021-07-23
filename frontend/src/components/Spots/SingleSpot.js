@@ -5,11 +5,13 @@ import { useHistory, useParams } from "react-router-dom";
 import EditForm from "./EditForm";
 
 const SingleSpot = () => {
-  const [isformShown, setIsFormShown] = useState(false);
   const { id } = useParams();
 
   const spot = useSelector((state) => state.spots[id]);
   const user = useSelector((state) => state.session.user);
+
+  const [isformShown, setIsFormShown] = useState(false);
+  const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -22,23 +24,6 @@ const SingleSpot = () => {
     setIsFormShown((prevState) => !prevState);
   };
 
-  // useEffect(() => {
-  //   if (isformShown) {
-  //     const form = document.getElementById("edit-spot-form");
-  //     const button = document.createElement("button");
-  //     button.type = "submit";
-  //     button.innerText = "Update Spot";
-  //     button.className = "submit";
-
-  //     button.addEventListener("click", formShow);
-  //     form.append(button);
-
-  //     return () => {
-  //       button.removeEventListener("click", formShow);
-  //     };
-  //   }
-  // }, [isformShown]);
-
   const handleEdit = () => {
     setIsFormShown((prevState) => !prevState);
   };
@@ -48,6 +33,23 @@ const SingleSpot = () => {
     history.push("/spots");
   };
 
+  const prevImg = () => {
+    const length = spot.Images.length;
+    if (currentImageIdx === 0) {
+      setCurrentImageIdx(length);
+    }
+    setCurrentImageIdx((prevSate) => prevSate - 1);
+  };
+
+  const nextImg = () => {
+    const length = spot.Images.length;
+    if (currentImageIdx === length - 1) {
+      setCurrentImageIdx(0);
+    } else {
+      setCurrentImageIdx((prevSate) => prevSate + 1);
+    }
+  };
+
   if (!spot) {
     return null;
   }
@@ -55,7 +57,12 @@ const SingleSpot = () => {
   return (
     <div>
       <h1>{spot.name}</h1>
-      <img src="" alt={`${spot.name} property`} />
+      <button onClick={prevImg}>Prev Img</button>
+      <img
+        src={spot.Images[currentImageIdx].url}
+        alt={`${spot.name} property`}
+      />
+      <button onClick={nextImg}>Next Img</button>
       <div>
         Address:
         <span> {spot.city}, </span>

@@ -13,6 +13,7 @@ function CreateForm() {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [price, setPrice] = useState(0);
+  const [image, setImage] = useState("");
   const [errors, setErrors] = useState([]);
 
   if (!sessionUser) return <Redirect to="/login" />;
@@ -29,6 +30,7 @@ function CreateForm() {
       country,
       price,
       name,
+      image,
     };
 
     return dispatch(createSpotForm(newSpot))
@@ -90,6 +92,13 @@ function CreateForm() {
           type="text"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          required
+        />
+        <label>Image Url</label>
+        <input
+          type="text"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
           required
         />
         <button type="submit" className="submit">
