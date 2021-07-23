@@ -15,6 +15,7 @@ function EditForm({ formShow }) {
   const [country, setCountry] = useState(defaultSpotVals.country);
   const [state, setState] = useState(defaultSpotVals.state);
   const [price, setPrice] = useState(defaultSpotVals.price);
+  const [image, setImage] = useState(defaultSpotVals.Images[0].url);
   const [errors, setErrors] = useState([]);
 
   if (!sessionUser) return <Redirect to="/login" />;
@@ -31,6 +32,7 @@ function EditForm({ formShow }) {
       country,
       price,
       name,
+      image,
     };
 
     dispatch(editSpotForm(newSpot, id))
@@ -96,6 +98,13 @@ function EditForm({ formShow }) {
           type="text"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          required
+        />
+        <label>Image Url</label>
+        <input
+          type="text"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
           required
         />
         <button type="submit" className="submit">

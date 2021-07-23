@@ -82,7 +82,6 @@ router.get(
   asyncHandler(async (req, res) => {
     const { id } = req.params;
     const spot = await Spot.findByPk(id, { include: Image });
-    console.log("FOUND SPOT", spot);
     res.json(spot);
   })
 );
@@ -105,7 +104,7 @@ router.put(
   validateSpot,
   asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { address, city, state, country, price, name } = req.body;
+    const { address, city, state, country, price, name, image } = req.body;
     const spot = await Spot.findByPk(id);
 
     const newSpot = await spot.update({
@@ -117,6 +116,19 @@ router.put(
       price,
       name,
     });
+
+    const oldImage = await Image.findOne({
+      where: {
+        spotId: id,
+      },
+    });
+
+    const newImage = await oldImage.update({
+      spotId: id,
+      url: image,
+    });
+
+    newSpot.dataValues.Images = [newImage];
 
     res.json(newSpot);
   })
