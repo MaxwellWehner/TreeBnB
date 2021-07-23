@@ -34,7 +34,7 @@ function CreateForm() {
     };
 
     return dispatch(createSpotForm(newSpot))
-      .then(() => history.push(`/spots`))
+      .then((returnedSpot) => history.push(`/spots/${returnedSpot.id}`))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);

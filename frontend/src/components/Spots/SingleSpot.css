@@ -1,0 +1,64 @@
+.single-spot__container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Rubik", sans-serif;
+}
+.imgae-nav__container {
+  display: flex;
+  align-items: center;
+}
+
+.image__nav {
+  border: none;
+  background-color: inherit;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.image__nav:hover {
+  cursor: pointer;
+}
+
+.display-img {
+  height: 500px;
+  width: auto;
+  border: 5px solid #3db37e;
+  border-radius: 5px;
+}
+
+.edit__button:hover {
+  background-color: rgb(247, 247, 95);
+}
+
+.delete__button:hover {
+  background-color: #ff7f7f;
+}
+
+.edit__button {
+  border: 1px solid;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  background-color: #acffad;
+}
+
+.delete__button {
+  border: 1px solid;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  background-color: #acffad;
+}
+
+.buttons__container {
+  width: 10%;
+  display: flex;
+  justify-content: space-between;
+}

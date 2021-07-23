@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOneSpot, deleteSpotThunk } from "../../store/spots";
 import { useHistory, useParams } from "react-router-dom";
 import EditForm from "./EditForm";
+import "./SingleSpot.css";
 
 const SingleSpot = () => {
   const { id } = useParams();
@@ -55,14 +56,21 @@ const SingleSpot = () => {
   }
 
   return (
-    <div>
+    <div className="single-spot__container">
       <h1>{spot.name}</h1>
-      <button onClick={prevImg}>Prev Img</button>
-      <img
-        src={spot.Images[currentImageIdx].url}
-        alt={`${spot.name} property`}
-      />
-      <button onClick={nextImg}>Next Img</button>
+      <div className="imgae-nav__container">
+        <button onClick={prevImg} className="image__nav">
+          <i className="fas fa-chevron-left fa-5x"></i>
+        </button>
+        <img
+          src={spot.Images[currentImageIdx].url}
+          alt={`${spot.name} property`}
+          className="display-img"
+        />
+        <button onClick={nextImg} className="image__nav">
+          <i className="fas fa-chevron-right fa-5x"></i>
+        </button>
+      </div>
       <div>
         Address:
         <span> {spot.city}, </span>
@@ -71,11 +79,17 @@ const SingleSpot = () => {
       </div>
       <div>Price: ${spot.price}</div>
       {user && user.id === spot.userId && (
-        <div>
-          <button onClick={handleEdit}>Edit</button>{" "}
-          <button onClick={handleDelete}>delete</button>
+        <>
+          <div className="buttons__container">
+            <button onClick={handleEdit} className=" edit__button">
+              Edit
+            </button>
+            <button onClick={handleDelete} className="delete__button">
+              delete
+            </button>
+          </div>
           {isformShown && <EditForm formShow={formShow} />}
-        </div>
+        </>
       )}
     </div>
   );

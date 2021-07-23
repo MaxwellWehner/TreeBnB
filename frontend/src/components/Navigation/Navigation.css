@@ -68,7 +68,7 @@ li {
   background-color: #ff7f7f;
 }
 
-i {
+.profile__button > i {
   padding-right: 10px;
 }
 
