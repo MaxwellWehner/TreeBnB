@@ -4,7 +4,7 @@ const { check } = require("express-validator");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Spot } = require("../../db/models");
+const { Spot, Image } = require("../../db/models");
 
 const router = express.Router();
 
@@ -33,6 +33,10 @@ const validateSpot = [
     .exists({ checkFalsy: true })
     .isInt({ gt: 0 })
     .withMessage("Please provide a price greater than 0"),
+  check("image")
+    .exists({ checkFalsy: true })
+    .isURL()
+    .withMessage("Please enter a valid image URL"),
   handleValidationErrors,
 ];
 
@@ -42,7 +46,7 @@ router.post(
   requireAuth,
   validateSpot,
   asyncHandler(async (req, res) => {
-    const { address, city, state, country, price, name } = req.body;
+    const { address, city, state, country, price, name, image } = req.body;
     const spot = await Spot.create({
       userId: req.user.id,
       address,
@@ -53,6 +57,13 @@ router.post(
       name,
     });
 
+    const newImage = await Image.create({
+      spotId: spot.id,
+      url: image,
+    });
+
+    spot.dataValues.Images = [newImage];
+
     return res.json(spot);
   })
 );
@@ -61,8 +72,7 @@ router.post(
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const spots = await Spot.findAll();
-
+    const spots = await Spot.findAll({ include: Image });
     return res.json(spots);
   })
 );
@@ -71,8 +81,8 @@ router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const spot = await Spot.findByPk(id);
-
+    const spot = await Spot.findByPk(id, { include: Image });
+    console.log("FOUND SPOT", spot);
     res.json(spot);
   })
 );
