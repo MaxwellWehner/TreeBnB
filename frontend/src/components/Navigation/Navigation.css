@@ -15,6 +15,7 @@ li {
 
 .nav__button:hover {
   background-color: #71efa3;
+  cursor: pointer;
 }
 
 .nav__container {

@@ -2,6 +2,7 @@ import { getSpots } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import "./Spots.css";
 
 const Spots = () => {
   let spots = useSelector((state) => {
@@ -30,20 +31,23 @@ const Spots = () => {
       {spots &&
         spots.map((spot) => {
           return (
-            <div className="spot_container" key={spot.id}>
-              <h2>{spot.name}</h2>
+            <div className="spot__container" key={spot.id}>
               <img
+                className="first-image"
                 src={spot.Images[0].url}
                 alt="treehouse property"
                 onClick={() => handleSingleSpot(spot)}
               />
-              <div className="address">
-                Address:
-                <span> {spot.city}, </span>
-                <span>{spot.state}, </span>
-                <span>{spot.country}</span>
+              <div className="text-info__container">
+                <h2 className="spot__name">{spot.name}</h2>
+                <div className="address">
+                  Address:
+                  <span> {spot.city}, </span>
+                  <span>{spot.state}, </span>
+                  <span>{spot.country}</span>
+                </div>
+                <div className="spot__price">Price: ${spot.price}/night</div>
               </div>
-              <div>Price: ${spot.price}/night</div>
             </div>
           );
         })}

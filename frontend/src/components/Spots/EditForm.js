@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { editSpotForm } from "../../store/spots";
 
 function EditForm({ formShow }) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { id } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const defaultSpotVals = useSelector((state) => state.spots[id]);

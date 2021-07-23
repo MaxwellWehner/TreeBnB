@@ -76,7 +76,7 @@ export const editSpotForm = (payload, id) => async (dispatch) => {
 };
 
 export const deleteSpotThunk = (id) => async (dispatch) => {
-  const res = await csrfFetch(`/api/spots/${id}`, {
+  await csrfFetch(`/api/spots/${id}`, {
     method: "delete",
   });
 

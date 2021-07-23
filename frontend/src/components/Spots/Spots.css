@@ -1,0 +1,39 @@
+img {
+  width: 250px;
+}
+
+.spots__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.spot__container {
+  display: flex;
+  margin-top: 50px;
+}
+
+.first-image {
+  align-self: flex-start;
+  border: 5px solid #3db37e;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.first-image:hover {
+  cursor: pointer;
+}
+
+.spot__name {
+  font-size: 30px;
+}
+
+.text-info__container {
+  font-family: "Rubik", sans-serif;
+  align-self: center;
+}
+
+.address > span {
+  font-weight: 500;
+}
