@@ -84,3 +84,26 @@ span {
 .my-bookings__button {
   width: 100%;
 }
+
+.footer__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background-color: #50cb93;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.aboutLink-img {
+  width: 31px;
+  height: 34px;
+}
+
+.linkToGiTHub {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}

@@ -107,6 +107,60 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          spotId: 4,
+          url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/treehouse-retnals-screen-shot-2019-01-07-at-11-36-21-am-1559231680.jpg?crop=0.444xw:1.00xh;0.277xw,0&resize=980:*",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          spotId: 4,
+          url: "https://a0.muscache.com/im/pictures/254c9f06-3f22-4a8e-b5b4-0c5e9ccdfef1.jpg?im_w=1200",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          spotId: 5,
+          url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/montana-1530136458.jpg?crop=0.502xw:1.00xh;0.259xw,0&resize=980:*",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          spotId: 5,
+          url: "https://a0.muscache.com/im/pictures/58f0d2d7-e5d5-4235-8bd2-9af249bf7247.jpg?im_w=1200",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          spotId: 5,
+          url: "https://a0.muscache.com/im/pictures/79f4933f-4a7f-4f46-b82b-9c1f3f08c2d3.jpg?im_w=720",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          spotId: 5,
+          url: "https://a0.muscache.com/im/pictures/837b5c15-a2c1-4ee0-a6e3-739448588210.jpg?im_w=1200",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          spotId: 6,
+          url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/treehouse-san-jose-1595361353.jpg?crop=0.430xw:1.00xh;0.323xw,0&resize=980:*",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          spotId: 6,
+          url: "https://a0.muscache.com/im/pictures/ffd79382-f436-4497-a6f2-5759fb90b949.jpg?im_w=720",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          spotId: 6,
+          url: "https://a0.muscache.com/im/pictures/8deaf289-1b11-4b3f-b884-f2985c361231.jpg?im_w=1200",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );

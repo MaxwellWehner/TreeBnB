@@ -10,6 +10,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import CreateForm from "./components/Spots/CreateForm";
 import MyBookings from "./components/Bookings";
+import Footer from "./components/Navigation/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ function App() {
           <Route>404 page not found</Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
