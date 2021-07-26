@@ -44,14 +44,14 @@ export const getUserBookings = (userId) => async (dispatch) => {
   }
 };
 
-// export const getOneSpot = (id) => async (dispatch) => {
-//   const res = await csrfFetch(`/api/spots/${id}`);
+export const getOneBooking = (spotId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/bookings/spot/${spotId}`);
 
-//   if (res.ok) {
-//     const spot = await res.json();
-//     if (spot !== null) dispatch(addOneSpot(spot));
-//   }
-// };
+  if (res.ok) {
+    const booking = await res.json();
+    if (booking !== null) dispatch(addOneBooking(booking));
+  }
+};
 
 export const createBookingForm = (booking) => async (dispatch) => {
   const res = await csrfFetch("/api/bookings", {
@@ -107,18 +107,18 @@ const bookingsReducer = (state = initialState, action) => {
       };
     }
     case ADD_ONE: {
-      if (!state[action.spot.id]) {
+      if (!state[action.booking.id]) {
         const newState = {
           ...state,
-          [action.spot.id]: action.spot,
+          [action.booking.id]: action.booking,
         };
         return newState;
       }
       return {
         ...state,
-        [action.spot.id]: {
-          ...state[action.spot.id],
-          ...action.spot,
+        [action.booking.id]: {
+          ...state[action.booking.id],
+          ...action.booking,
         },
       };
     }

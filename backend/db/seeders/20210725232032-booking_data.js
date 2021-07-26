@@ -6,7 +6,7 @@ module.exports = {
       "Bookings",
       [
         {
-          spotId: 1,
+          spotId: 3,
           userId: 1,
           startDate: new Date(2021, 7, 25, 12, 10, 0, 0),
           endDate: new Date(2021, 7, 28, 12, 10, 0, 0),

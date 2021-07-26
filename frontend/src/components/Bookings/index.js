@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { getUserBookings } from "../../store/bookings";
-import { getOneSpot, getSpots } from "../../store/spots";
+import { getUserBookings, removeBookings } from "../../store/bookings";
+import { getSpots } from "../../store/spots";
 
 function MyBookings() {
   const dispatch = useDispatch();
@@ -15,9 +15,10 @@ function MyBookings() {
   });
 
   useEffect(() => {
+    dispatch(removeBookings());
     dispatch(getUserBookings(userId));
     dispatch(getSpots());
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   const handleSingleSpot = (spot) => {
     history.push(`/spots/${spot.id}`);

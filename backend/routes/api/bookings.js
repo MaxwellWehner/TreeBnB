@@ -52,7 +52,7 @@ router.post(
   })
 );
 
-//get all bookings
+//get all bookings for a user
 router.get(
   "/user/:userId(\\d+)",
   requireAuth,
@@ -64,6 +64,20 @@ router.get(
       },
     });
     return res.json(bookings);
+  })
+);
+
+//get booking for a spot
+router.get(
+  "/spot/:spotId(\\d+)",
+  asyncHandler(async (req, res) => {
+    const { spotId } = req.params;
+    const booking = await Booking.findOne({
+      where: {
+        spotId,
+      },
+    });
+    return res.json(booking);
   })
 );
 

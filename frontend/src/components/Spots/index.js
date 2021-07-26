@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./Spots.css";
+import { removeBookings } from "../../store/bookings";
 
 const Spots = () => {
   let spots = useSelector((state) => {
@@ -16,6 +17,7 @@ const Spots = () => {
 
   useEffect(() => {
     dispatch(getSpots());
+    dispatch(removeBookings());
   }, [dispatch]);
 
   const handleSingleSpot = (spot) => {
