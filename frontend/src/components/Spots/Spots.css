@@ -37,3 +37,7 @@ img {
 .address > span {
   font-weight: 500;
 }
+
+.spacer {
+  height: 90px;
+}
