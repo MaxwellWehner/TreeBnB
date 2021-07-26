@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
+import { useHistory } from "react-router-dom";
+import { removeBookings } from "../../store/bookings";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
@@ -26,6 +29,12 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    dispatch(removeBookings(user.id));
+  };
+
+  const handleBookings = (e) => {
+    e.preventDefault();
+    history.push(`/${user.id}/bookings`);
   };
 
   return (
@@ -43,6 +52,14 @@ function ProfileButton({ user }) {
           <li>
             <span>Email: </span>
             {user.email}
+          </li>
+          <li>
+            <button
+              onClick={handleBookings}
+              className="nav__button my-bookings__button"
+            >
+              My Bookings
+            </button>
           </li>
           <li>
             <button onClick={logout} className="nav__button logout__button">

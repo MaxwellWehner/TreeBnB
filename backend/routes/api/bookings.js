@@ -54,15 +54,22 @@ router.post(
 
 //get all bookings
 router.get(
-  "/",
+  "/user/:userId(\\d+)",
+  requireAuth,
   asyncHandler(async (req, res) => {
-    const bookings = await Booking.findAll();
+    const { userId } = req.params;
+    const bookings = await Booking.findAll({
+      where: {
+        userId,
+      },
+    });
     return res.json(bookings);
   })
 );
 
 router.get(
   "/:id(\\d+)",
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { id } = req.params;
     const booking = await Booking.findByPk(id);

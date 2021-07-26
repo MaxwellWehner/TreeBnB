@@ -9,6 +9,7 @@ import SingleSpot from "./components/Spots/SingleSpot";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import CreateForm from "./components/Spots/CreateForm";
+import MyBookings from "./components/Bookings";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path="/spots/:id">
             <SingleSpot />
+          </Route>
+          <Route path="/:userId/bookings">
+            <MyBookings />
           </Route>
           <Route path="/login">
             <LoginFormPage />

@@ -80,3 +80,7 @@ li {
 span {
   font-weight: 600;
 }
+
+.my-bookings__button {
+  width: 100%;
+}
