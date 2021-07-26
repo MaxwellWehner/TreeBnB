@@ -1,5 +1,3 @@
-import { NavLink } from "react-router-dom";
-
 function Footer() {
   return (
     <div className="footer__container">
@@ -10,7 +8,11 @@ function Footer() {
         className="linkToGiTHub"
         href="https://github.com/MaxwellWehner/TreeBnB"
       >
-        <img className="aboutLink-img" src="/tree-house.svg"></img>
+        <img
+          className="aboutLink-img"
+          src="/tree-house.svg"
+          alt="treehouse link to the gitHub page"
+        ></img>
       </a>
     </div>
   );

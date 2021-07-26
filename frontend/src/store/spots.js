@@ -115,7 +115,6 @@ const spotReducer = (state = initialState, action) => {
       };
     }
     case DELETE_SPOT: {
-      console.log("in delete_spot case");
       const updatedState = { ...state };
       delete updatedState[action.id];
       return updatedState;
