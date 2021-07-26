@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneSpot, deleteSpotThunk } from "../../store/spots";
 import { useHistory, useParams } from "react-router-dom";
-import { getOneBooking } from "../../store/bookings";
+import { deleteBookingThunk, getOneBooking } from "../../store/bookings";
 import EditForm from "./EditForm";
 import BookingForm from "../Bookings/BookingForm";
 import "./SingleSpot.css";
@@ -53,6 +53,10 @@ const SingleSpot = () => {
   const handleDelete = () => {
     dispatch(deleteSpotThunk(id));
     history.push("/");
+  };
+
+  const handleDeleteForBooking = () => {
+    dispatch(deleteBookingThunk(bookings[0].id));
   };
 
   const prevImg = () => {
@@ -123,10 +127,15 @@ const SingleSpot = () => {
           user.id !== spot.userId &&
           bookings.length > 0 &&
           user.id === bookings[0].userId && (
-            <>
-              <button>Edit Booking</button>
-              <button>Delete Booking</button>
-            </>
+            <div className="buttons__container">
+              <button className=" edit__button">Edit Booking</button>
+              <button
+                className="delete__button"
+                onClick={handleDeleteForBooking}
+              >
+                Delete Booking
+              </button>
+            </div>
           )
       }
       {
