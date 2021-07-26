@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "cascade",
       hooks: true,
     });
+    Spot.hasOne(models.Booking, {
+      foreignKey: "spotId",
+      onDelete: "cascade",
+      hooks: true,
+    });
   };
   return Spot;
 };

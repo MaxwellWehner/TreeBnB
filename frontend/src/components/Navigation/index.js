@@ -27,9 +27,6 @@ function Navigation({ isLoaded }) {
       <NavLink exact to="/" className="home__button nav__button">
         TreeBnB
       </NavLink>
-      <NavLink to="/spots" className="spots__button nav__button">
-        Spots
-      </NavLink>
       <NavLink to="/spots/create" className="host__button nav__button">
         Host A Spot
       </NavLink>

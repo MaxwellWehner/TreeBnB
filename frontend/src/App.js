@@ -24,6 +24,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+            <Spots />
           </Route>
           <Route exact path="/spots">
             <Spots />
@@ -40,6 +41,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route>404 page not found</Route>
         </Switch>
       )}
     </>

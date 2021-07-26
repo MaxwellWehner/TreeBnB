@@ -31,7 +31,7 @@ const SingleSpot = () => {
 
   const handleDelete = () => {
     dispatch(deleteSpotThunk(id));
-    history.push("/spots");
+    history.push("/");
   };
 
   const prevImg = () => {

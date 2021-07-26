@@ -41,7 +41,7 @@ export const getOneSpot = (id) => async (dispatch) => {
 
   if (res.ok) {
     const spot = await res.json();
-    dispatch(addOneSpot(spot));
+    if (spot !== null) dispatch(addOneSpot(spot));
   }
 };
 
