@@ -57,8 +57,68 @@
   background-color: #acffad;
 }
 
-.buttons__container {
+/* .buttons__container {
   width: 10%;
   display: flex;
   justify-content: space-between;
+} */
+
+.booked {
+  width: 300px;
+  text-align: center;
+  background-color: #ff7f7f;
+  border: 1px solid;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.spot__info {
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #85ff87;
+}
+
+.spot__info > span {
+  font-weight: normal;
+}
+
+.single-spot__button {
+  background-color: #85ff87;
+  border: 1px solid;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+}
+
+.single-spot__button:hover {
+  background-color: #71efa3;
+  cursor: pointer;
+}
+
+.userBooked__info {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #85ff87;
+}
+
+.buttons__container {
+  width: 100%;
+}
+
+#bookedInfoStart {
+  margin-top: 10px;
 }
