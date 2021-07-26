@@ -4,6 +4,7 @@ import { getOneSpot, deleteSpotThunk } from "../../store/spots";
 import { useHistory, useParams } from "react-router-dom";
 import { getOneBooking } from "../../store/bookings";
 import EditForm from "./EditForm";
+import BookingForm from "../Bookings/BookingForm";
 import "./SingleSpot.css";
 
 const SingleSpot = () => {
@@ -14,6 +15,7 @@ const SingleSpot = () => {
   const bookings = useSelector((state) => Object.values(state.bookings));
 
   const [isformShown, setIsFormShown] = useState(false);
+  const [isOriginalBookingShown, setisOriginalBookingShown] = useState(false);
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
   const dispatch = useDispatch();
@@ -40,6 +42,10 @@ const SingleSpot = () => {
     setIsFormShown((prevState) => !prevState);
   };
 
+  const formShowForBooking = () => {
+    setisOriginalBookingShown((prevState) => !prevState);
+  };
+
   const handleEdit = () => {
     setIsFormShown((prevState) => !prevState);
   };
@@ -64,6 +70,10 @@ const SingleSpot = () => {
     } else {
       setCurrentImageIdx((prevSate) => prevSate + 1);
     }
+  };
+
+  const handleBookingSpot = () => {
+    setisOriginalBookingShown((prevSate) => !prevSate);
   };
 
   if (!spot) {
@@ -99,7 +109,12 @@ const SingleSpot = () => {
       {
         //for a non owner to book that spot if not booked
         user && user.id !== spot.userId && bookings.length === 0 && (
-          <div>Book this spot</div>
+          <>
+            <button onClick={handleBookingSpot}>Book this Spot</button>
+            {isOriginalBookingShown && (
+              <BookingForm formShow={formShowForBooking} />
+            )}
+          </>
         )
       }
       {

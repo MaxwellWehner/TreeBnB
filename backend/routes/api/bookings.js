@@ -15,7 +15,7 @@ const validateBooking = [
     .withMessage("Please provide a valid date")
     .custom((value) => {
       const date = new Date();
-      if (value.getTime() < date.getTime()) {
+      if (Date.parse(value) < Date.parse(date)) {
         throw new Error(`Start date must be later than today`);
       }
       return true;
@@ -26,7 +26,7 @@ const validateBooking = [
     .withMessage("Please provide a valid date")
     .custom((value) => {
       const date = new Date();
-      if (value.getTime() < date.getTime()) {
+      if (Date.parse(value) < Date.parse(date)) {
         throw new Error(`End date must be later than today`);
       }
       return true;
