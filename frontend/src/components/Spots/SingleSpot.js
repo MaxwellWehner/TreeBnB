@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { deleteBookingThunk, getOneBooking } from "../../store/bookings";
 import EditForm from "./EditForm";
 import BookingForm from "../Bookings/BookingForm";
+import BookingEditForm from "../Bookings/BookingEditForm";
 import "./SingleSpot.css";
 
 const SingleSpot = () => {
@@ -16,6 +17,7 @@ const SingleSpot = () => {
 
   const [isformShown, setIsFormShown] = useState(false);
   const [isOriginalBookingShown, setisOriginalBookingShown] = useState(false);
+  const [isEditBookingFormShown, setisEditBookingFormShown] = useState(false);
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
   const dispatch = useDispatch();
@@ -46,8 +48,16 @@ const SingleSpot = () => {
     setisOriginalBookingShown((prevState) => !prevState);
   };
 
+  const formShowforEditBooking = () => {
+    setisEditBookingFormShown((prevSate) => !prevSate);
+  };
+
   const handleEdit = () => {
     setIsFormShown((prevState) => !prevState);
+  };
+
+  const handleEditForBooking = () => {
+    setisEditBookingFormShown((prevSate) => !prevSate);
   };
 
   const handleDelete = () => {
@@ -107,14 +117,20 @@ const SingleSpot = () => {
         <span>{spot.country}</span>
       </div>
       <div>Price: ${spot.price}</div>
-      {bookings.length > 0 && bookings[0].spotId === id && (
+      {/* {bookings.length > 0 && bookings[0].spotId === id && (
         <div>{JSON.stringify(bookings[0])}</div>
-      )}
+      )} */}
+      {
+        //if the spot is booked and the user is not the booker
+        bookings.length > 0 && <div className="boooked">Booked</div>
+      }
       {
         //for a non owner to book that spot if not booked
         user && user.id !== spot.userId && bookings.length === 0 && (
           <>
-            <button onClick={handleBookingSpot}>Book this Spot</button>
+            <button className="nav__button" onClick={handleBookingSpot}>
+              Book this Spot
+            </button>
             {isOriginalBookingShown && (
               <BookingForm formShow={formShowForBooking} />
             )}
@@ -127,25 +143,31 @@ const SingleSpot = () => {
           user.id !== spot.userId &&
           bookings.length > 0 &&
           user.id === bookings[0].userId && (
-            <div className="buttons__container">
-              <button className=" edit__button">Edit Booking</button>
-              <button
-                className="delete__button"
-                onClick={handleDeleteForBooking}
-              >
-                Delete Booking
-              </button>
-            </div>
+            <>
+              <div className="buttons__container">
+                <button className="edit__button" onClick={handleEditForBooking}>
+                  Edit Booking
+                </button>
+                <button
+                  className="delete__button"
+                  onClick={handleDeleteForBooking}
+                >
+                  Delete Booking
+                </button>
+              </div>
+              <div>Start: {bookings[0].startDate.slice(0, 10)}</div>
+              <div>End: {bookings[0].endDate.slice(0, 10)}</div>
+              {isEditBookingFormShown && (
+                <BookingEditForm formShow={formShowforEditBooking} />
+              )}
+            </>
           )
       }
-      {
-        //if the spot is booked and the user is not the booker
-        bookings.length > 0 && <div className="boooked">Booked</div>
-      }
+
       {user && user.id === spot.userId && (
         <>
           <div className="buttons__container">
-            <button onClick={handleEdit} className=" edit__button">
+            <button onClick={handleEdit} className="edit__button">
               Edit
             </button>
             <button onClick={handleDelete} className="delete__button">
