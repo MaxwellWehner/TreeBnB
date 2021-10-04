@@ -11,47 +11,51 @@ import Navigation from "./components/Navigation";
 import CreateForm from "./components/Spots/CreateForm";
 import MyBookings from "./components/Bookings";
 import Footer from "./components/Navigation/Footer";
+import UserOwnedSpots from "./components/Spots/userOwnedSpots";
 
 function App() {
-  const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+	const dispatch = useDispatch();
+	const [isLoaded, setIsLoaded] = useState(false);
+	useEffect(() => {
+		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+	}, [dispatch]);
 
-  return (
-    <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <Home />
-            <Spots />
-          </Route>
-          <Route exact path="/spots">
-            <Spots />
-          </Route>
-          <Route path="/spots/create">
-            <CreateForm />
-          </Route>
-          <Route path="/spots/:id">
-            <SingleSpot />
-          </Route>
-          <Route path="/:userId/bookings">
-            <MyBookings />
-          </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route>404 page not found</Route>
-        </Switch>
-      )}
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<Navigation isLoaded={isLoaded} />
+			{isLoaded && (
+				<Switch>
+					<Route exact path="/">
+						<Home />
+						<Spots />
+					</Route>
+					<Route exact path="/spots">
+						<Spots />
+					</Route>
+					<Route path="/spots/create">
+						<CreateForm />
+					</Route>
+					<Route path="/spots/:id">
+						<SingleSpot />
+					</Route>
+					<Route path="/:userId/bookings">
+						<MyBookings />
+					</Route>
+					<Route path="/login">
+						<LoginFormPage />
+					</Route>
+					<Route path="/signup">
+						<SignupFormPage />
+					</Route>
+					<Route path="/your-spots">
+						<UserOwnedSpots />
+					</Route>
+					<Route>404 page not found</Route>
+				</Switch>
+			)}
+			<Footer />
+		</>
+	);
 }
 
 export default App;

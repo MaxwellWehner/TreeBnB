@@ -58,6 +58,9 @@ function MyBookings() {
 						</div>
 					);
 				})}
+			{!Object.keys(bookings).length ? (
+				<div>You have no bookings</div>
+			) : null}
 		</div>
   );
 }

@@ -38,39 +38,55 @@ function ProfileButton({ user }) {
     history.push(`/${user.id}/bookings`);
   };
 
-  return (
-    <>
-      <button onClick={openMenu} className="nav__button profile__button">
-        <i className="fas fa-user-circle" />
-        {user.username}
-      </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>
-            <span>Username: </span>
-            {user.username}
-          </li>
-          <li>
-            <span>Email: </span>
-            {user.email}
-          </li>
-          <li>
-            <button
-              onClick={handleBookings}
-              className="nav__button my-bookings__button"
-            >
-              My Bookings
-            </button>
-          </li>
-          <li>
-            <button onClick={logout} className="nav__button logout__button">
-              Log Out
-            </button>
-          </li>
-        </ul>
-      )}
-    </>
-  );
+    const handleYourSpots = (e) => {
+		e.preventDefault();
+		history.push(`/your-spots`);
+	};
+
+	return (
+		<>
+			<button onClick={openMenu} className="nav__button profile__button">
+				<i className="fas fa-user-circle" />
+				{user.username}
+			</button>
+			{showMenu && (
+				<ul className="profile-dropdown">
+					<li>
+						<span>Username: </span>
+						{user.username}
+					</li>
+					<li>
+						<span>Email: </span>
+						{user.email}
+					</li>
+					<li>
+						<button
+							onClick={handleBookings}
+							className="nav__button my-bookings__button"
+						>
+							Your Bookings
+						</button>
+					</li>
+					<li>
+						<button
+							onClick={handleYourSpots}
+							className="nav__button my-bookings__button"
+						>
+							Your Spots
+						</button>
+					</li>
+					<li>
+						<button
+							onClick={logout}
+							className="nav__button logout__button"
+						>
+							Log Out
+						</button>
+					</li>
+				</ul>
+			)}
+		</>
+	);
 }
 
 export default ProfileButton;

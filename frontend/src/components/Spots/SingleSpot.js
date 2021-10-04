@@ -62,7 +62,7 @@ const SingleSpot = () => {
 
   const handleDelete = () => {
     dispatch(deleteSpotThunk(id));
-    history.push("/");
+    history.push("/your-spots");
   };
 
   const handleDeleteForBooking = () => {

@@ -1,12 +1,12 @@
 import { getSpots } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import "./Spots.css";
 import { removeBookings } from "../../store/bookings";
 
-const Spots = () => {
-    let spots = useSelector((state) => {
+const UserOwnedSpots = () => {
+	let spots = useSelector((state) => {
 		const spotsObj = state.spots;
 		const values = Object.values(spotsObj);
 		return values;
@@ -25,15 +25,17 @@ const Spots = () => {
 		history.push(`/spots/${spot.id}`);
 	};
 
+	if (!sessionUser) return <Redirect to="/login" />;
+
 	if (!spots) {
-		return null;
+		return <div>You have not created any spots</div>;
 	}
 
 	return (
 		<div className="spots__container main-content">
 			{spots &&
 				spots.map((spot) => {
-					if (spot.userId !== sessionUser?.id) {
+					if (spot.userId === sessionUser?.id) {
 						return (
 							<div className="spot__container" key={spot.id}>
 								<img
@@ -62,4 +64,4 @@ const Spots = () => {
 	);
 };
 
-export default Spots;
+export default UserOwnedSpots;
