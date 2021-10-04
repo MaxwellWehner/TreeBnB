@@ -91,7 +91,7 @@ span {
   align-items: center;
   height: 40px;
   background-color: #50cb93;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
 }

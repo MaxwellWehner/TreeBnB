@@ -41,35 +41,35 @@ const BookingEditForm = ({ formShow }) => {
       });
   };
   return (
-    <div className="form__container">
-      <form onSubmit={handleSubmit} className="signup__form">
-        {errors.length > 0 && (
-          <ul className="errors">
-            Please fix the following errors:
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
-        )}
-        <label>Start Date</label>
-        <input
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          required
-        />
-        <label>End Date</label>
-        <input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          required
-        />
-        <button type="submit" className="submit">
-          Submit Edit
-        </button>
-      </form>
-    </div>
+		<div className="form__container main-content">
+			<form onSubmit={handleSubmit} className="signup__form">
+				{errors.length > 0 && (
+					<ul className="errors">
+						Please fix the following errors:
+						{errors.map((error, idx) => (
+							<li key={idx}>{error}</li>
+						))}
+					</ul>
+				)}
+				<label>Start Date</label>
+				<input
+					type="date"
+					value={startDate}
+					onChange={(e) => setStartDate(e.target.value)}
+					required
+				/>
+				<label>End Date</label>
+				<input
+					type="date"
+					value={endDate}
+					onChange={(e) => setEndDate(e.target.value)}
+					required
+				/>
+				<button type="submit" className="submit">
+					Submit Edit
+				</button>
+			</form>
+		</div>
   );
 };
 

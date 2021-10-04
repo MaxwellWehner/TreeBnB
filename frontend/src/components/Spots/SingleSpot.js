@@ -95,97 +95,107 @@ const SingleSpot = () => {
   }
 
   return (
-    <div className="single-spot__container">
-      <h1>{spot.name}</h1>
-      <div className="imgae-nav__container">
-        <button onClick={prevImg} className="image__nav">
-          <i className="fas fa-chevron-left fa-5x"></i>
-        </button>
-        <img
-          src={spot.Images[currentImageIdx].url}
-          alt={`${spot.name} property`}
-          className="display-img"
-        />
-        <button onClick={nextImg} className="image__nav">
-          <i className="fas fa-chevron-right fa-5x"></i>
-        </button>
-      </div>
-      <div className="spot__info">
-        Address:
-        <span> {spot.city}, </span>
-        <span>{spot.state}, </span>
-        <span>{spot.country}</span>
-        <div>Price: ${spot.price}</div>
-      </div>
+		<div className="single-spot__container main-content">
+			<h1>{spot.name}</h1>
+			<div className="imgae-nav__container">
+				<button onClick={prevImg} className="image__nav">
+					<i className="fas fa-chevron-left fa-5x"></i>
+				</button>
+				<img
+					src={spot.Images[currentImageIdx].url}
+					alt={`${spot.name} property`}
+					className="display-img"
+				/>
+				<button onClick={nextImg} className="image__nav">
+					<i className="fas fa-chevron-right fa-5x"></i>
+				</button>
+			</div>
+			<div className="spot__info">
+				Address:
+				<span> {spot.city}, </span>
+				<span>{spot.state}, </span>
+				<span>{spot.country}</span>
+				<div>Price: ${spot.price}</div>
+			</div>
 
-      {/* {bookings.length > 0 && bookings[0].spotId === id && (
+			{/* {bookings.length > 0 && bookings[0].spotId === id && (
         <div>{JSON.stringify(bookings[0])}</div>
       )} */}
-      {
-        //if the spot is booked and the user is not the booker
-        bookings.length > 0 && <div className="booked">Booked</div>
-      }
-      {
-        //for a non owner to book that spot if not booked
-        user && user.id !== spot.userId && bookings.length === 0 && (
-          <>
-            <button className="single-spot__button" onClick={handleBookingSpot}>
-              Book this Spot
-            </button>
-            {isOriginalBookingShown && (
-              <BookingForm formShow={formShowForBooking} />
-            )}
-          </>
-        )
-      }
-      {
-        //if the current user made the booking for that spot
-        user &&
-          user.id !== spot.userId &&
-          bookings.length > 0 &&
-          user.id === bookings[0].userId && (
-            <>
-              <div className="userBooked__info">
-                <div className="buttons__container">
-                  <button
-                    className="edit__button userInfoEdit"
-                    onClick={handleEditForBooking}
-                  >
-                    Edit Booking
-                  </button>
-                  <button
-                    className="delete__button userInfoDelete"
-                    onClick={handleDeleteForBooking}
-                  >
-                    Delete Booking
-                  </button>
-                </div>
-                <div id="bookedInfoStart">
-                  Start: {bookings[0].startDate.slice(0, 10)}
-                </div>
-                <div>End: {bookings[0].endDate.slice(0, 10)}</div>
-              </div>
-              {isEditBookingFormShown && (
-                <BookingEditForm formShow={formShowforEditBooking} />
-              )}
-            </>
-          )
-      }
+			{
+				//if the spot is booked and the user is not the booker
+				bookings.length > 0 && <div className="booked">Booked</div>
+			}
+			{
+				//for a non owner to book that spot if not booked
+				user && user.id !== spot.userId && bookings.length === 0 && (
+					<>
+						<button
+							className="single-spot__button"
+							onClick={handleBookingSpot}
+						>
+							Book this Spot
+						</button>
+						{isOriginalBookingShown && (
+							<BookingForm formShow={formShowForBooking} />
+						)}
+					</>
+				)
+			}
+			{
+				//if the current user made the booking for that spot
+				user &&
+					user.id !== spot.userId &&
+					bookings.length > 0 &&
+					user.id === bookings[0].userId && (
+						<>
+							<div className="userBooked__info">
+								<div className="buttons__container">
+									<button
+										className="edit__button userInfoEdit"
+										onClick={handleEditForBooking}
+									>
+										Edit Booking
+									</button>
+									<button
+										className="delete__button userInfoDelete"
+										onClick={handleDeleteForBooking}
+									>
+										Delete Booking
+									</button>
+								</div>
+								<div id="bookedInfoStart">
+									Start: {bookings[0].startDate.slice(0, 10)}
+								</div>
+								<div>
+									End: {bookings[0].endDate.slice(0, 10)}
+								</div>
+							</div>
+							{isEditBookingFormShown && (
+								<BookingEditForm
+									formShow={formShowforEditBooking}
+								/>
+							)}
+						</>
+					)
+			}
 
-      {user && user.id === spot.userId && (
-        <div className="userBooked__info">
-          <div className="buttons__container">
-            <button onClick={handleEdit} className="edit__button">
-              Edit
-            </button>
-            <button onClick={handleDelete} className="delete__button">
-              delete
-            </button>
-          </div>
-        </div>
-      )}
-      {isformShown && <EditForm formShow={formShow} />}
-    </div>
+			{user && user.id === spot.userId && (
+				<div className="userBooked__info">
+					<div className="buttons__container">
+						<button onClick={handleEdit} className="edit__button">
+							Edit
+						</button>
+						<button
+							onClick={handleDelete}
+							className="delete__button"
+						>
+							delete
+						</button>
+					</div>
+				</div>
+			)}
+			{isformShown && <EditForm formShow={formShow} />}
+		</div>
   );
 };
 

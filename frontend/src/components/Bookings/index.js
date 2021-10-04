@@ -27,34 +27,38 @@ function MyBookings() {
   if (!sessionUser) return <Redirect to="/login" />;
 
   return (
-    <div className="spots__container">
-      {bookings &&
-        spots &&
-        bookings.map((booking) => {
-          return (
-            <div className="spot__container" key={booking.id}>
-              <img
-                className="first-image"
-                src={spots[booking.spotId].Images[0].url}
-                alt="treehouse property"
-                onClick={() => handleSingleSpot(spots[booking.spotId])}
-              />
-              <div className="text-info__container">
-                <h2 className="spot__name">{spots[booking.spotId].name}</h2>
-                <div className="address">
-                  Address:
-                  <span> {spots[booking.spotId].city}, </span>
-                  <span>{spots[booking.spotId].state}, </span>
-                  <span>{spots[booking.spotId].country}</span>
-                </div>
-                <div className="spot__price">
-                  Price: ${spots[booking.spotId].price}/night
-                </div>
-              </div>
-            </div>
-          );
-        })}
-    </div>
+		<div className="spots__container main-content">
+			{bookings &&
+				spots &&
+				bookings.map((booking) => {
+					return (
+						<div className="spot__container" key={booking.id}>
+							<img
+								className="first-image"
+								src={spots[booking.spotId].Images[0].url}
+								alt="treehouse property"
+								onClick={() =>
+									handleSingleSpot(spots[booking.spotId])
+								}
+							/>
+							<div className="text-info__container">
+								<h2 className="spot__name">
+									{spots[booking.spotId].name}
+								</h2>
+								<div className="address">
+									Address:
+									<span> {spots[booking.spotId].city}, </span>
+									<span>{spots[booking.spotId].state}, </span>
+									<span>{spots[booking.spotId].country}</span>
+								</div>
+								<div className="spot__price">
+									Price: ${spots[booking.spotId].price}/night
+								</div>
+							</div>
+						</div>
+					);
+				})}
+		</div>
   );
 }
 

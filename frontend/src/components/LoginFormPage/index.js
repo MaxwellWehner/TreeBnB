@@ -54,40 +54,40 @@ const LoginFormPage = () => {
   }
 
   return (
-    <div className="form__container">
-      <form onSubmit={handelSubmit} className="login__form">
-        {errors.length > 0 && (
-          <ul className="errors">
-            Please fix the following errors:
-            {errors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul>
-        )}
-        <label htmlFor="credential ">Username or Email:</label>
-        <input
-          id="credential"
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        ></input>
-        <label htmlFor="password">Password:</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        ></input>
-        <button type="submit" className="submit">
-          Log In
-        </button>
-      </form>
-      <button onClick={handleDemo} className="submit demo">
-        Demo User
-      </button>
-    </div>
+		<div className="form__container main-content">
+			<form onSubmit={handelSubmit} className="login__form">
+				{errors.length > 0 && (
+					<ul className="errors">
+						Please fix the following errors:
+						{errors.map((error) => (
+							<li key={error}>{error}</li>
+						))}
+					</ul>
+				)}
+				<label htmlFor="credential ">Username or Email:</label>
+				<input
+					id="credential"
+					type="text"
+					value={credential}
+					onChange={(e) => setCredential(e.target.value)}
+					required
+				></input>
+				<label htmlFor="password">Password:</label>
+				<input
+					id="password"
+					type="password"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					required
+				></input>
+				<button type="submit" className="submit">
+					Log In
+				</button>
+			</form>
+			<button onClick={handleDemo} className="submit demo">
+				Demo User
+			</button>
+		</div>
   );
 };
 

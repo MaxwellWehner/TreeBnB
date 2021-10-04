@@ -45,9 +45,12 @@ h1 {
   font-size: 2rem;
 }
 
-.root {
-  height: 100%;
+#root {
   background-color: #acffad;
-  display: flex;
-  justify-content: center;
+  position: relative;
+  min-height: 100vh;
+}
+
+.main-content{
+    padding-bottom: 40px;
 }
