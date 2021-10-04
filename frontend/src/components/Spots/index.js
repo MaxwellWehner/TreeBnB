@@ -6,33 +6,34 @@ import "./Spots.css";
 import { removeBookings } from "../../store/bookings";
 
 const Spots = () => {
-  let spots = useSelector((state) => {
-    const spotsObj = state.spots;
-    const values = Object.values(spotsObj);
-    return values;
-  });
+    let spots = useSelector((state) => {
+		const spotsObj = state.spots;
+		const values = Object.values(spotsObj);
+		return values;
+	});
+	let sessionUser = useSelector((state) => state.session.user);
 
-  const dispatch = useDispatch();
-  const history = useHistory();
+	const dispatch = useDispatch();
+	const history = useHistory();
 
-  useEffect(() => {
-    dispatch(getSpots());
-    dispatch(removeBookings());
-  }, [dispatch]);
+	useEffect(() => {
+		dispatch(getSpots());
+		dispatch(removeBookings());
+	}, [dispatch]);
 
-  const handleSingleSpot = (spot) => {
-    history.push(`/spots/${spot.id}`);
-  };
+	const handleSingleSpot = (spot) => {
+		history.push(`/spots/${spot.id}`);
+	};
 
-  if (!spots) {
-    return null;
-  }
+	if (!spots) {
+		return null;
+	}
 
-  return (
-		<>
-			<div className="spots__container main-content">
-				{spots &&
-					spots.map((spot) => {
+	return (
+		<div className="spots__container main-content">
+			{spots &&
+				spots.map((spot) => {
+					if (spot.userId !== sessionUser.id) {
 						return (
 							<div className="spot__container" key={spot.id}>
 								<img
@@ -55,10 +56,10 @@ const Spots = () => {
 								</div>
 							</div>
 						);
-					})}
-			</div>
-		</>
-  );
+					}
+				})}
+		</div>
+	);
 };
 
 export default Spots;
