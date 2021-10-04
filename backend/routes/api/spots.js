@@ -9,35 +9,35 @@ const { Spot, Image } = require("../../db/models");
 const router = express.Router();
 
 const validateSpot = [
-  check("name")
-    .exists({ checkFalsy: true })
-    .isLength({ min: 5 })
-    .withMessage("Please provide a name with at least 5 characters."),
-  check("address")
-    .exists({ checkFalsy: true })
-    .isLength({ min: 5 })
-    .withMessage("Please provide a address with at least 5 characters."),
-  check("city")
-    .exists({ checkFalsy: true })
-    .isLength({ min: 5 })
-    .withMessage("Please provide a city with at least 5 characters."),
-  check("state")
-    .exists({ checkFalsy: true })
-    .isLength({ min: 5 })
-    .withMessage("Please provide a state with at least 5 characters."),
-  check("country")
-    .exists({ checkFalsy: true })
-    .isLength({ min: 5 })
-    .withMessage("Please provide a country with at least 5 characters."),
-  check("price")
-    .exists({ checkFalsy: true })
-    .isInt({ gt: 0 })
-    .withMessage("Please provide a price greater than 0"),
-  check("image")
-    .exists({ checkFalsy: true })
-    .isURL()
-    .withMessage("Please enter a valid image URL"),
-  handleValidationErrors,
+	check("name")
+		.exists({ checkFalsy: true })
+		.isLength({ min: 5 })
+		.withMessage("Please provide a name with at least 5 characters."),
+	check("address")
+		.exists({ checkFalsy: true })
+		.isLength({ min: 5 })
+		.withMessage("Please provide a address with at least 5 characters."),
+	check("city")
+		.exists({ checkFalsy: true })
+		.isLength({ min: 1 })
+		.withMessage("Please provide a city with at least 1 character."),
+	check("state")
+		.exists({ checkFalsy: true })
+		.isLength({ min: 1 })
+		.withMessage("Please provide a state with at least 1 character."),
+	check("country")
+		.exists({ checkFalsy: true })
+		.isLength({ min: 1 })
+		.withMessage("Please provide a country with at least 1 characters."),
+	check("price")
+		.exists({ checkFalsy: true })
+		.isInt({ gt: 0 })
+		.withMessage("Please provide a price greater than 0"),
+	check("image")
+		.exists({ checkFalsy: true })
+		.isURL()
+		.withMessage("Please enter a valid image URL"),
+	handleValidationErrors,
 ];
 
 // make a new spot

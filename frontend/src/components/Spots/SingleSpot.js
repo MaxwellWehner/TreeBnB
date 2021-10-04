@@ -102,7 +102,7 @@ const SingleSpot = () => {
 					<i className="fas fa-chevron-left fa-5x"></i>
 				</button>
 				<img
-					src={spot.Images[currentImageIdx].url}
+					src={spot.Images[currentImageIdx]?.url}
 					alt={`${spot.name} property`}
 					className="display-img"
 				/>

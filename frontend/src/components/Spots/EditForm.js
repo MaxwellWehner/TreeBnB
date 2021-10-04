@@ -14,7 +14,7 @@ function EditForm({ formShow }) {
   const [country, setCountry] = useState(defaultSpotVals.country);
   const [state, setState] = useState(defaultSpotVals.state);
   const [price, setPrice] = useState(defaultSpotVals.price);
-  const [image, setImage] = useState(defaultSpotVals.Images[0].url);
+  const [image, setImage] = useState(defaultSpotVals.Images[0]?.url);
   const [errors, setErrors] = useState([]);
 
   if (!sessionUser) return <Redirect to="/login" />;

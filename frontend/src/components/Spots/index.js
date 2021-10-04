@@ -37,7 +37,7 @@ const Spots = () => {
 							<div className="spot__container" key={spot.id}>
 								<img
 									className="first-image"
-									src={spot.Images[0].url}
+									src={spot.Images[0]?.url}
 									alt="treehouse property"
 									onClick={() => handleSingleSpot(spot)}
 								/>
