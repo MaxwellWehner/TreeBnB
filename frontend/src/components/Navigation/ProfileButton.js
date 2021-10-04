@@ -26,10 +26,11 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-    dispatch(removeBookings(user.id));
+  const logout = async (e) => {
+		e.preventDefault();
+		await dispatch(sessionActions.logout());
+		await dispatch(removeBookings(user.id));
+		history.push("/");
   };
 
   const handleBookings = (e) => {
