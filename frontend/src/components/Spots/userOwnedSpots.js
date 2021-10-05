@@ -1,7 +1,7 @@
 import { getSpots } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory, Redirect, Link } from "react-router-dom";
 import "./Spots.css";
 import { removeBookings } from "../../store/bookings";
 
@@ -27,40 +27,51 @@ const UserOwnedSpots = () => {
 
 	if (!sessionUser) return <Redirect to="/login" />;
 
-	if (!spots) {
-		return <div>You have not created any spots</div>;
-	}
-
 	return (
-		<div className="spots__container main-content">
-			{spots &&
-				spots.map((spot) => {
-					if (spot.userId === sessionUser?.id) {
-						return (
-							<div className="spot__container" key={spot.id}>
-								<img
-									className="first-image"
-									src={spot.Images[0]?.url}
-									alt="treehouse property"
-									onClick={() => handleSingleSpot(spot)}
-								/>
-								<div className="text-info__container">
-									<h2 className="spot__name">{spot.name}</h2>
-									<div className="address">
-										Address:
-										<span> {spot.city}, </span>
-										<span>{spot.state}, </span>
-										<span>{spot.country}</span>
-									</div>
-									<div className="spot__price">
-										Price: ${spot.price}/night
+		<>
+			<div className="spots__container main-content">
+				{spots &&
+					spots.map((spot) => {
+						if (spot.userId === sessionUser?.id) {
+							return (
+								<div className="spot__container" key={spot.id}>
+									<img
+										className="first-image"
+										src={spot.Images[0]?.url}
+										alt="treehouse property"
+										onClick={() => handleSingleSpot(spot)}
+									/>
+									<div className="text-info__container">
+										<h2 className="spot__name">
+											{spot.name}
+										</h2>
+										<div className="address">
+											Address:
+											<span> {spot.city}, </span>
+											<span>{spot.state}, </span>
+											<span>{spot.country}</span>
+										</div>
+										<div className="spot__price">
+											Price: ${spot.price}/night
+										</div>
 									</div>
 								</div>
-							</div>
-						);
-					}
-				})}
-		</div>
+							);
+						} else {
+							return null;
+						}
+					})}
+			</div>
+			{spots.filter((spot) => {
+				if (spot.userId === sessionUser.id) return 1;
+				else return 0;
+			}).length ? null : (
+				<div className="Nothing_added">
+					<div>You are currently not hosting any treehouses</div>
+					<Link to="/spots/create">Click here to host one</Link>
+				</div>
+			)}
+		</>
 	);
 };
 

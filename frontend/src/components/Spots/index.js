@@ -56,6 +56,8 @@ const Spots = () => {
 								</div>
 							</div>
 						);
+					} else {
+						return null;
 					}
 				})}
 		</div>
